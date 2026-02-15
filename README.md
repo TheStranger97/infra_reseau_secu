@@ -272,7 +272,7 @@ Capture wireshark pour montrer qu'on peut résoundre des noms
 <br>
 <br>
 
-Les confs des routeurs sont [ici](/tp1/configs/)
+Les confs des routeurs sont et de `dnsmasq` [ici](/tp1/configs/)
 
 # TP2 - Offensive sec
 ## Part 1 - DHCP attacks
