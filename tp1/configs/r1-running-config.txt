@@ -1,0 +1,137 @@
+Current configuration : 1760 bytes
+!
+upgrade fpd auto
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname r1.tp1.efrei
+!
+boot-start-marker
+boot-end-marker
+!
+logging message-counter syslog
+!
+no aaa new-model
+ip source-route
+no ip icmp rate-limit unreachable
+ip cef
+!
+!
+!
+!
+no ip domain lookup
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+archive
+ log config
+  hidekeys
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address dhcp
+ ip nat outside
+ ip virtual-reassembly
+ duplex half
+!
+interface FastEthernet1/0
+ no ip address
+ ip nat inside
+ ip virtual-reassembly
+ duplex half
+!
+interface FastEthernet1/0.10
+ encapsulation dot1Q 10
+ ip address 10.1.10.254 255.255.255.0
+ ip helper-address 10.1.30.1
+ ip nat inside
+ ip virtual-reassembly
+!
+interface FastEthernet1/0.20
+ encapsulation dot1Q 20
+ ip address 10.1.20.254 255.255.255.0
+ ip helper-address 10.1.30.1
+ ip nat inside
+ ip virtual-reassembly
+!
+interface FastEthernet1/0.30
+ encapsulation dot1Q 30
+ ip address 10.1.30.254 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+!
+interface FastEthernet1/0.40
+ encapsulation dot1Q 40
+ ip address 10.1.40.254 255.255.255.0
+ ip helper-address 10.1.30.1
+ ip nat inside
+ ip virtual-reassembly
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip nat inside source list 1 interface FastEthernet0/0 overload
+!
+access-list 1 permit any
+access-list 2 permit any
+no cdp log mismatch duplex
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+gatekeeper
+ shutdown
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ login
+!
+end
