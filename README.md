@@ -2,6 +2,9 @@
 
 ## Part 1 - Network Setup
 
+Topologie du réseau
+![Topologie](topologie.png)
+
 ### Conf routeur
 
 Après avoir ajouter toutes les machines et les avoirs allumés on peut commencer par configurer le routeur
@@ -276,7 +279,7 @@ Les confs des routeurs sont et de `dnsmasq` [ici](/tp1/configs/)
 
 # TP2 - Offensive sec
 ## Part 1 - DHCP attacks
-### Installation serveur dhcp
+### DHCP Spoofing
 `dhcp.tp1.efrei`
 
 ```bash
@@ -330,4 +333,36 @@ Capture wireshak pour montrer que tout work
 <br>
 <br>
 
-Et plus rien... désolé j'ai mis tout mon temps sur le projet fil rouge et j'ai pas pu terminé celui-ci à temps
+
+### DHCP Starvation
+Script de starvation
+[`dhcp_starvation.py`](/tp2/dhcp_starvation.py)  
+Capture wireshark du dhcp starvation
+[`p1_dhcp_starvation.pcap`](/tp2/p1_dhcp_starvation.pcapng)  
+Capture wireshark d'un client qui n'a plus accès au réseau
+[`p1_dhcp_dos.pcap`](/tp2/p1_dhcp_dos.pcapng)  
+
+
+## Part 2 - DHCP attacks
+### ARP Poisoning
+
+Script python d'arp poisoning
+[`arp_poisoning.py`](/tp2/arp_poisoning.py)  
+Capture wireshark des trames ARP malveillantes de l'attaque
+[`p2_poisoning.pcap`](/tp2/p2_poisoning.pcapng)    
+
+### Man in the Middle
+
+Capture wireshark des pings de `bowser` vers internet
+[`p2_mitm.pcap`](/tp2/p2_mitm.pcapng)
+
+## Part 3 - DNS Spoof
+### DNS Spoof
+
+Sur le rogue dhcp serveur il faut rajouter la ligne suivante pour préciser un serveur DNS au client
+```bash
+dhcp-option=option:dns-server,10.1.10.81
+```
+
+Capture wireshark des requêtes DNS de `bowser`
+[p4_dns_spoof.pcap](/tp2/p4_dns_spoof.pcapng) 
